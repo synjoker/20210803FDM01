@@ -7,6 +7,16 @@ X,Y = np.meshgrid(X,Y)
 Z = -1*np.sin(X)
 Z1 = np.sin(X)
 
+fig = plt.figure()
+ax = Axes3D(fig)
+fig.add_axes(ax)
+# ax.plot_surface(X,Y,Z1-Phi/np.max(Phi),rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
+ax.plot_surface(X,Y,X+Y,rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
+# ax.plot_surface(X,Y,Z1,rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
+# ax.contourf(X,Y,Z1-Phi/np.max(Phi),zdir='z',offset=1,cmap='rainbow')
+plt.title('Difference methods for Laplace equation',fontsize='12')
+plt.show()
+
 N=50 # 矩阵维数
 Imat = -np.eye(N)/4
 
@@ -56,6 +66,8 @@ def Barray(N): # 方程右边
 Gmat = Gmatrix(N)
 Kmat = Kmatrix(N,Gmat,Imat)
 
+
+
 Z = sum(Z.tolist(),[])
 Z = np.multiply(Z, -1)
 Z = np.reshape(Z, (-1, 1))
@@ -77,6 +89,7 @@ t= Z1 - Phi
 
 fig = plt.figure()
 ax = Axes3D(fig)
+fig.add_axes(ax)
 # ax.plot_surface(X,Y,Z1-Phi/np.max(Phi),rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
 ax.plot_surface(X,Y,Phi/np.max(Phi),rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
 # ax.plot_surface(X,Y,Z1,rstride=1,cstride=1,cmap=plt.get_cmap('rainbow'))
